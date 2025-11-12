@@ -3,7 +3,7 @@ package studio8;
 import support.cse131.NotYetImplementedException;
 
 public class MultipleChoiceQuestion extends Question {
-
+	private String choices[];
 	/**
 	 * Constructor
 	 * @param prompt
@@ -11,11 +11,9 @@ public class MultipleChoiceQuestion extends Question {
 	 * @param points
 	 * @param choices
 	 */
-	public MultipleChoiceQuestion(String prompt, String answer, int points, String[] choices) {
-		// Call the super class constructor, then create and set
-		// instance variables for any values that aren't handled
-		// by the base class
-		throw new NotYetImplementedException();
+	public MultipleChoiceQuestion(String newPrompt, String newAnswer, int newPoints, String[] newChoices) {
+		super(newPrompt, newAnswer, newPoints);
+		choices = newChoices;
 	}
 	
 	/**
@@ -23,7 +21,10 @@ public class MultipleChoiceQuestion extends Question {
 	 * the choices present for the question.
 	 */
 	public void displayPrompt() {
-		throw new NotYetImplementedException();
+		super.displayPrompt();
+		for (int i = 0; i < choices.length; i++) {
+			System.out.println(i + ". " + choices[i]);
+		}
 	}
 	
 	/**
@@ -31,11 +32,16 @@ public class MultipleChoiceQuestion extends Question {
 	 * @return String[] of choices
 	 */
 	public String[] getChoices() {
-		throw new NotYetImplementedException();
+		return choices;
 	}
 	
 	public static void main(String[] args) {
-		// TODO: create your own MultipleChoiceQuestion
+		String newChoices[] = {"5", "6", "7", "20"};
+		MultipleChoiceQuestion mcq1 = new MultipleChoiceQuestion("How many rings will Jayden Daniels get in his career?", "20", 1000, newChoices);
+		mcq1.displayPrompt();
+
+		System.out.println(mcq1.checkAnswer("20"));
+		System.out.println(mcq1.checkAnswer("6"));
 	}
 
 }
